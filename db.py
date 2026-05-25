@@ -168,3 +168,21 @@ def get_expenses_by_category(start_date=None, end_date=None):
     df = conn.execute(query, params).df()
     conn.close()
     return df
+
+def get_incomes_by_category(start_date=None, end_date=None):
+    conn = get_connection()
+    query = """
+        SELECT c.name as category, SUM(t.amount) as total
+        FROM transactions t
+        JOIN categories c ON t.category_id = c.id
+        WHERE t.type = 'доход'
+    """
+    params = []
+    if start_date and end_date:
+        query += " AND t.date >= ? AND t.date <= ?"
+        params.extend([start_date, end_date])
+        
+    query += " GROUP BY c.name ORDER BY total DESC"
+    df = conn.execute(query, params).df()
+    conn.close()
+    return df

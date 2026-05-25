@@ -16,3 +16,7 @@
 * `Install_Dependencies`: Activates the pre-existing virtual environment (`.venv`) and runs pip installations.
 * `Verify_Environment_Stack`: Checks successful package compilation and appends the actual environment state to the project logs.
 * `Generate_Docker_Config`: Writes the Docker production setup tailored for Render.
+
+### UX Researcher & Interface Optimizer:
+* `Evaluate_Usability`: Analyzes the dashboard layout and interaction flows to identify friction points.
+* `Optimize_Responsiveness`: Ensures the UI components adapt elegantly to various screen sizes and orientations.
