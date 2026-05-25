@@ -11,14 +11,20 @@ RUN apt-get update && apt-get install -y \
 
 # Copy requirements and install
 COPY requirements.txt .
-RUN pip3 install -r requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 # Copy application files
 COPY . .
 
-# Expose Streamlit port
-EXPOSE 8501
+# Make start script executable
+RUN chmod +x start.sh
 
-HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
+# Render dynamically sets the PORT environment variable
+ENV PORT=8501
+EXPOSE $PORT
 
-ENTRYPOINT ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+# Healthcheck to verify the app is running
+HEALTHCHECK CMD curl --fail http://localhost:${PORT}/_stcore/health || exit 1
+
+# Start the application using the start script
+CMD ["./start.sh"]
