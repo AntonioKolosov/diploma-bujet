@@ -3,3 +3,5 @@ duckdb>=0.10.0
 pandas>=2.0.0
 pytest>=8.0.0
 plotly>=5.18.0
+bcrypt>=4.1.0
+streamlit-cookies-manager>=0.1.0
