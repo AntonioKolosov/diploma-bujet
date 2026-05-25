@@ -18,8 +18,8 @@ def ping_app():
         except Exception as e:
             print(f"Ping error: {e}")
         
-        # Ping каждые 14 минут (Render засыпает после 15 минут неактивности)
-        time.sleep(14 * 60)
+        # Ping каждые 1.5 минуты (90 секунд)
+        time.sleep(90)
 
 if __name__ == "__main__":
     ping_app()
